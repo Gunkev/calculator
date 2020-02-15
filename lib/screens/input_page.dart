@@ -1,12 +1,13 @@
-import 'package:bmi_app/ResultPage.dart';
+import 'package:bmi_app/screens/ResultPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bmi_app/ReUsableCard.dart';
-import 'package:bmi_app/ReUsableColItems.dart';
+import 'package:bmi_app/components/ReUsableCard.dart';
+import 'package:bmi_app/components/ReUsableColItems.dart';
 import 'package:bmi_app/constant.dart';
-import 'package:bmi_app/RoundedIconButton.dart';
+import 'package:bmi_app/components/RoundedIconButton.dart';
+import 'package:bmi_app/components/ButtonWidget.dart';
 
 //gender
 enum Gender {
@@ -41,34 +42,35 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: new ReUsableCard(
+                  child: ReUsableCard(
                     onPress: () {
                       setState(() {
                         gender = Gender.male;
                       });
                     },
                     colour: gender == Gender.male ? kActiveReUsableCardColour : kInActiveCardColour,
-                    cardChild: new ReUsableColIterm(
+                    cardChild: ReUsableColIterm(
                       icon: FontAwesomeIcons.mars,
                       textLabel: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: new ReUsableCard(
+                  child: ReUsableCard(
                     onPress: () {
                       setState(() {
                         gender = Gender.female;
                       });
                     },
                     colour: gender == Gender.female ? kActiveReUsableCardColour : kInActiveCardColour,
-                    cardChild: new ReUsableColIterm(
+                    cardChild: ReUsableColIterm(
                       icon: FontAwesomeIcons.venus,
                       textLabel: 'FEMALE',
                     ),
@@ -78,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Expanded(
-            child: new ReUsableCard(
+            child: ReUsableCard(
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -119,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: new ReUsableCard(
+                  child: ReUsableCard(
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -159,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Expanded(
-                  child: new ReUsableCard(
+                  child: ReUsableCard(
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -201,17 +203,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          GestureDetector(
+          ButtonWidget(
+            buttonLabel: 'CALCULATE',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
             },
-            child: Container(
-              child: Text('CALCULATE'),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              height: kBottomContainerHeight,
-            ),
-          )
+          ),
         ],
       ),
     );
